@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom FizzBuzz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 400px;
+            text-align: center;
+            padding-right: 6%;
+        }
+
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Custom FizzBuzz App</h1>
+        <p>Enter your values and see the results:</p>
+        <input type="number" id="inputN" placeholder="Enter max value (n)" />
+        <input type="number" id="inputFizz" placeholder="Enter Fizz value (e.g., 3)" />
+        <input type="number" id="inputBuzz" placeholder="Enter Buzz value (e.g., 5)" />
+        <button onclick="generateFizzBuzz()">Generate</button>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        function generateFizzBuzz() {
+            const n = parseInt(document.getElementById("inputN").value);
+            const fizzValue = parseInt(document.getElementById("inputFizz").value);
+            const buzzValue = parseInt(document.getElementById("inputBuzz").value);
+            const resultsContainer = document.getElementById("results");
+
+            if (isNaN(n) || isNaN(fizzValue) || isNaN(buzzValue)) {
+                resultsContainer.innerHTML = "<p>Please enter valid numbers for all fields.</p>";
+                return;
+            }
+
+            let results = "";
+            for (let i = 1; i <= n; i++) {
+                if (i % fizzValue === 0 && i % buzzValue === 0) {
+                    results += `<p>FizzBuzz</p>`;
+                } else if (i % fizzValue === 0) {
+                    results += `<p>Fizz</p>`;
+                } else if (i % buzzValue === 0) {
+                    results += `<p>Buzz</p>`;
+                } else {
+                    results += `<p>${i}</p>`;
+                }
+            }
+
+            resultsContainer.innerHTML = results;
+        }
+    </script>
+</body>
+</html>
